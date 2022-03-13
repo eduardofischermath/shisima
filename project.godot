@@ -1,0 +1,136 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Board",
+"language": "GDScript",
+"path": "res://Board and subs/Board.gd"
+}, {
+"base": "Button",
+"class": "ButtonWithPopup",
+"language": "GDScript",
+"path": "res://Buttons/ButtonWithPopup.gd"
+}, {
+"base": "Area2D",
+"class": "CustomShapeButton",
+"language": "GDScript",
+"path": "res://Buttons/CustomShapeButton.gd"
+}, {
+"base": "GenericOperator",
+"class": "EngineOperator",
+"language": "GDScript",
+"path": "res://Operators/EngineOperator.gd"
+}, {
+"base": "Node",
+"class": "GameAudio",
+"language": "GDScript",
+"path": "res://Audio/GameAudio.gd"
+}, {
+"base": "Control",
+"class": "GenericHUD",
+"language": "GDScript",
+"path": "res://HUDs and menus/GenericHUD.gd"
+}, {
+"base": "Node",
+"class": "GenericOperator",
+"language": "GDScript",
+"path": "res://Operators/GenericOperator.gd"
+}, {
+"base": "GenericOperator",
+"class": "HumanOperator",
+"language": "GDScript",
+"path": "res://Operators/HumanOperator.gd"
+}, {
+"base": "Node",
+"class": "Judge",
+"language": "GDScript",
+"path": "res://Game logic/Judge.gd"
+}, {
+"base": "Node2D",
+"class": "Piece",
+"language": "GDScript",
+"path": "res://Pieces/Piece.gd"
+}, {
+"base": "Piece",
+"class": "PieceAsBody",
+"language": "GDScript",
+"path": "res://Pieces/PieceAsBody.gd"
+}, {
+"base": "Piece",
+"class": "PieceAsDrawing",
+"language": "GDScript",
+"path": "res://Pieces/PieceAsDrawing.gd"
+}, {
+"base": "Node2D",
+"class": "PiecePath",
+"language": "GDScript",
+"path": "res://Board and subs/PiecePath.gd"
+}, {
+"base": "Node2D",
+"class": "PiecePlace",
+"language": "GDScript",
+"path": "res://Board and subs/PiecePlace.gd"
+}, {
+"base": "Node2D",
+"class": "PossibleMove",
+"language": "GDScript",
+"path": "res://Board and subs/PossibleMove.gd"
+} ]
+_global_script_class_icons={
+"Board": "",
+"ButtonWithPopup": "",
+"CustomShapeButton": "",
+"EngineOperator": "",
+"GameAudio": "",
+"GenericHUD": "",
+"GenericOperator": "",
+"HumanOperator": "",
+"Judge": "",
+"Piece": "",
+"PieceAsBody": "",
+"PieceAsDrawing": "",
+"PiecePath": "",
+"PiecePlace": "",
+"PossibleMove": ""
+}
+
+[application]
+
+config/name="Shisima"
+run/main_scene="res://Main/Main.tscn"
+config/icon="res://Assets Images/icon.png"
+
+[autoload]
+
+G_META="*res://Globals/GlobalMeta.gd"
+G_RULES="*res://Globals/GlobalRules.gd"
+G_COLORS="*res://Globals/GlobalColors.gd"
+G_DIMENSIONS="*res://Globals/GlobalDimensions.gd"
+G_DRAWINGS="*res://Globals/GlobalDrawings.gd"
+G_OTHERS="*res://Globals/GlobalOthers.gd"
+G_SCENES="*res://Globals/GlobalScenes.gd"
+G_OPTIONS="*res://Globals/GlobalOptions.gd"
+
+[display]
+
+window/size/width=1000
+window/size/height=840
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"
