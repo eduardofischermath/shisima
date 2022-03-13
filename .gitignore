@@ -1,10 +1,10 @@
-# From repository
+# gitignore obtained from repository
 # https://github.com/github/gitignore/blob/main/Godot.gitignore
 
 # Godot-specific ignores
 .import/
 export.cfg
-export_presets.cfg
+#export_presets.cfg # I think this can be shared, as it has in some way hints or instructions to building/exporting successfully
 
 # Imported translations (automatically generated from CSV files)
 *.translation
