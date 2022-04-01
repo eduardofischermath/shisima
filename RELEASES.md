@@ -2,7 +2,7 @@
 
 Current version: 0.1.0+dev
 
-# v0.1.0 (2022.03.13)
+## v0.1.0 (2022.03.13)
 
 Note: retroactively versioned on 2022.04.01
 
