@@ -1,6 +1,10 @@
 # RELEASES
 
-Current version: 0.1.0+dev
+Current version: 0.2.0-prep
+
+## v0.2.0 (in preparation)
+
+Has web version (HTML5 build).
 
 ## v0.1.0 (2022.03.13)
 
