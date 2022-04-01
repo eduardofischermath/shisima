@@ -1,6 +1,6 @@
 # RELEASES
 
-Current version: 0.2.0
+Current version: 0.2.0+dev
 
 ## v0.2.0 (2022.04.01)
 
