@@ -36,8 +36,8 @@ and project-related files.
 Within project code, maybe separate assets and code better, sending code
 one folder deeper.
 
-## ISSUE #0004 ONGOING
+## ISSUE #0004 COMPLETE
 
-Deploy a web version so the game can be player in any web-capable device.
-Two possibilities: exporting to HTML5 using local Godot,
-or using GitHub Pages and a Jekyll xml script someone already created for this purpose.
+Game has a web version which can be played in any web-capable (more
+precisely HTML5-supporting) device through its GitHub Pages. Files of
+this build are in folder /docs/.
