@@ -1,10 +1,11 @@
 # RELEASES
 
-Current version: 0.2.0-prep
+Current version: 0.2.0
 
-## v0.2.0 (in preparation)
+## v0.2.0 (2022.04.01)
 
-Has web version (HTML5 build).
+Game has a web version (available via GitHub Pages) which can be played
+from any HTML5-supporting device.
 
 ## v0.1.0 (2022.03.13)
 
