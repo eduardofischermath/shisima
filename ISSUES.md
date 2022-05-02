@@ -12,10 +12,8 @@ There is a determined process for git branching, and it is consistent
 with versioning (done with git tags).
 The versioning is X.Y.Z, following the major/minor/patch convention,
 with occasional appendices to convey prep, alpha, beta, rc, etc.
-There two long-lived branches, called "master" and "develop",
-with the first tracking at all moments the best shipped version and the second
-centralizing the process of fixing bugs and creating features (and also
-of creating bugs).
+There one long-lived branch called "develop", centralizing the process
+of fixing bugs and creating features (and also of creating bugs).
 This includes a separate short-lived branch for each issue while in development
 (if it warrants a separate branch), for example issue-XYZW, and also a
 separate branch for each minor release (for example release-X.Y) containing
