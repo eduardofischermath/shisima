@@ -46,7 +46,7 @@ func set_inactive():
 
 # This returns clickable arrow but the arrow isn't connected to anything yet
 func place_and_return_arrow_shaped_clickable_button() -> CustomShapeButton:
-	clickable_arrow = CustomShapeButtonScene.instance()
+	clickable_arrow = CustomShapeButtonScene.instantiate()
 	var dimensions_dict = G_DIMENSIONS.POSSIBLE_MOVE_ARROW_DIMENSIONS
 	var arrow_polygon = G_DRAWINGS.get_arrow_shape(
 		source_to_target_half_vector,
@@ -69,9 +69,9 @@ func initial_setup(
 	position = Vector2() # Child of PiecePath, so position should be (0, 0)
 	source_to_target_half_vector = 0.5*(target_piece_place.position - source_piece_place.position)
 	clickable_arrow = place_and_return_arrow_shaped_clickable_button()
-	clickable_arrow.connect('mouse_clicked', self, '_on_clickable_arrow_mouse_clicked')
+	clickable_arrow.connect('mouse_clicked', Callable(self, '_on_clickable_arrow_mouse_clicked'))
 	# Signal below never emits, but we leave it connected here for a future implementatiom
-	clickable_arrow.connect('corresponding_key_pressed', self, '_on_clickable_arrow_corresponding_key_pressed')
+	clickable_arrow.connect('corresponding_key_pressed', Callable(self, '_on_clickable_arrow_corresponding_key_pressed'))
 	# During creation PossibleMove should be impossible (and thus "invisible")
 	# The controller of possibility of moves should be ShisimaGame
 

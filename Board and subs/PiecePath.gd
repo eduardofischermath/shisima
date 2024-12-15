@@ -67,7 +67,7 @@ func draw_visuals() -> void:
 		source_position,
 		target_position
 	]
-	var line_array: PoolVector2Array = PoolVector2Array(pre_line_array)
+	var line_array: PackedVector2Array = PackedVector2Array(pre_line_array)
 	rectangle.set_points(line_array)
 	rectangle.set_width(2 * G_DIMENSIONS.PIECE_PATH_HALF_THICKNESS)
 	if G_OTHERS.SET_TEXT_FOR_LABELS:
@@ -91,13 +91,13 @@ func place_and_return_possible_move(
 	var official_name_arg: String = G_RULES.build_ordered_pair_from_unordered_pair(
 		official_name, # Meaning self.official_name
 		direction)
-	var possible_move_scene: PossibleMove = PossibleMoveScene.instance()
+	var possible_move_scene: PossibleMove = PossibleMoveScene.instantiate()
 	possible_move_scene.initial_setup(
 		official_name_arg,
 		source_piece_place_arg,
 		target_piece_place_arg)
 	# Need to connect signal emitted by possible_move to this
-	possible_move_scene.connect('possible_move_performed', self, '_on_possible_move_performed')
+	possible_move_scene.connect('possible_move_performed', Callable(self, '_on_possible_move_performed'))
 	add_child(possible_move_scene)
 	return possible_move_scene
 

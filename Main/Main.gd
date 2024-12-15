@@ -23,8 +23,8 @@ var GameAudioScene: PackedScene = G_SCENES.GAME_AUDIO_SCENE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$InitialMenu.connect('start_button_pressed', self, 'on_start_button_pressed')
-	$InitialMenu.connect('quit_button_pressed', self, 'on_quit_button_pressed')
+	$InitialMenu.connect('start_button_pressed', Callable(self, 'on_start_button_pressed'))
+	$InitialMenu.connect('quit_button_pressed', Callable(self, 'on_quit_button_pressed'))
 
 ################################################
 # SIGNAL PROCESSING
@@ -32,10 +32,10 @@ func _ready():
 
 func on_start_button_pressed():
 	$InitialMenu.set_visible(false)
-	var shisima_game: Node = ShisimaGameScene.instance()
-	var game_audio: Node = GameAudioScene.instance()
+	var shisima_game: Node = ShisimaGameScene.instantiate()
+	var game_audio: Node = GameAudioScene.instantiate()
 	# Maybe do some pre-tree setup?
-	shisima_game.connect('audio_requested', self, '_on_audio_requested')
+	shisima_game.connect('audio_requested', Callable(self, '_on_audio_requested'))
 	add_child(shisima_game)
 	add_child(game_audio)
 

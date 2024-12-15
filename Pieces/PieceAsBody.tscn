@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 
 [node name="PieceRigidBody" type="RigidBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="PieceRigidBody"]
+[node name="Sprite2D" type="Sprite2D" parent="PieceRigidBody"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PieceRigidBody"]
 shape = SubResource( 1 )

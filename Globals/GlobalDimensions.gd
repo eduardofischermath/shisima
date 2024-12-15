@@ -48,7 +48,7 @@ const PIECE_DIMENSIONS: Dictionary = {
 func update_main_element_dimensions_from_screen_size():
 	# Compute (or update) certain lengths depending on screen
 	# Idea: 4 panels. One board, one top panel, one left and right for each player
-	var screen_size = OS.get_screen_size()
+	var screen_size = DisplayServer.screen_get_size()
 	if screen_size.x > 1.0 * screen_size.y:
 		# This is for the "horizontal displays"
 		# Game info to the sides of the board

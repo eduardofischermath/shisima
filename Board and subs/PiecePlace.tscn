@@ -12,7 +12,7 @@ __meta__ = {
 [node name="Visuals" type="Polygon2D" parent="."]
 
 [node name="Label" type="Label" parent="Visuals"]
-margin_bottom = 49.0
+offset_bottom = 49.0
 theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

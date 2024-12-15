@@ -16,7 +16,7 @@ extends Node
 # To facilitate, we have one default in GLOBAL_DIMENSIONS
 func get_arrow_shape(
 		vector_giving_direction_of_arrow: Vector2,
-		dimensions_dict: Dictionary = G_DIMENSIONS.POSSIBLE_MOVE_ARROW_DIMENSIONS) -> PoolVector2Array:
+		dimensions_dict: Dictionary = G_DIMENSIONS.POSSIBLE_MOVE_ARROW_DIMENSIONS) -> PackedVector2Array:
 	# To shorten:
 	var d_d: Dictionary = dimensions_dict
 	# For convenience, let u be the unit parallel vector point to the tip of the arrow
@@ -41,7 +41,7 @@ func get_arrow_shape(
 	# Now the other point of the base of the triangle/tip
 	pre_vertices.append((-half_total_arrow_length+d_d.BASE_LENGTH)*u - d_d.HALF_TIP_WIDTH*v)
 	# Finished. Collect the points into the Polygon2D
-	var vertices: PoolVector2Array = PoolVector2Array(pre_vertices)
+	var vertices: PackedVector2Array = PackedVector2Array(pre_vertices)
 	return vertices
 
 # dimensions_dict should have CIRCLE_CENTER, OUTER_CIRCLE_RADIUS, THICKNESS, NUMBER_OF_POLYGON_VERTICES
@@ -50,7 +50,7 @@ func get_arrow_shape(
 # If THICKNESS < OUTER_CIRCLE_RADIUS we get a ring with inner radius being
 #OUTER_CIRCLE_RADIUS - HALF_THICKNESS
 func get_thick_circle_shape(
-		dimensions_dict: Dictionary) -> PoolVector2Array:
+		dimensions_dict: Dictionary) -> PackedVector2Array:
 	var d_d: Dictionary = dimensions_dict # For short
 	# Adapt for absence of THICKNESS, also for parameter HALF_THICKNESS
 	if not ('THICKNESS' in d_d):
@@ -66,7 +66,7 @@ func get_thick_circle_shape(
 	if not ('NUMBER_OF_POLYGON_VERTICES' in d_d):
 		d_d.NUMBER_OF_POLYGON_VERTICES = G_DIMENSIONS.BEST_NUMBER_OF_POLYGONS_FOR_CIRCLE_APPROXIMATION
 	var angle_single_step: float = 2 * PI / d_d.NUMBER_OF_POLYGON_VERTICES
-	var polygon_vertices: PoolVector2Array
+	var polygon_vertices: PackedVector2Array
 	# Subdivide for cases of solid disk and ring
 	if d_d.THICKNESS == d_d.OUTER_CIRCLE_RADIUS:
 		# Draw regular polygon with d_d.NUMBER_OF_POLYGON_VERTICES vertices, simulating circle
@@ -79,7 +79,7 @@ func get_thick_circle_shape(
 			temp_angle = idx * angle_single_step
 			temp_outer_vector = outer_radius_right_vector.rotated(temp_angle)
 			pre_outer_points.append(d_d.CIRCLE_CENTER + temp_outer_vector)
-		polygon_vertices = PoolVector2Array(pre_outer_points)
+		polygon_vertices = PackedVector2Array(pre_outer_points)
 	elif (0 < d_d.THICKNESS) and (d_d.THICKNESS < d_d.OUTER_CIRCLE_RADIUS): # Ring
 		var inner_circle_radius: float = d_d.OUTER_CIRCLE_RADIUS - d_d.THICKNESS
 		var inner_radius_right_vector: Vector2 = Vector2(inner_circle_radius, 0)
@@ -109,7 +109,7 @@ func get_thick_circle_shape(
 		# Need to reverse inner circle to polygon to work
 		pre_inner_points.invert()
 		var pre_polygon_vertices: Array = pre_inner_points + pre_outer_points
-		polygon_vertices = PoolVector2Array(pre_polygon_vertices)
+		polygon_vertices = PackedVector2Array(pre_polygon_vertices)
 	else:
 		G_META.raise_error_message('Cannot have thickness negative, or larger than outer circle radius')
 	return polygon_vertices
@@ -129,12 +129,12 @@ func draw_thick_circle(
 		color: Color) -> void:
 	var polygon_node: Polygon2D # To be drawn on it (the way we want) it needs to be Polygon2D
 	if draw_to_new_child_node:
-		var new_polygon: Polygon2D = Polygon2D.instance()
+		var new_polygon: Polygon2D = Polygon2D.instantiate()
 		relevant_node.add_child(new_polygon)
 		polygon_node = new_polygon
 	else:
 		polygon_node = relevant_node
-	var polygon_vertices: PoolVector2Array = get_thick_circle_shape(dimensions_dict)
+	var polygon_vertices: PackedVector2Array = get_thick_circle_shape(dimensions_dict)
 	polygon_node.set_polygon(polygon_vertices)
 	polygon_node.set_color(color)
 	polygon_node.set_antialiased(true)

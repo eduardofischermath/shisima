@@ -163,7 +163,7 @@ func find_corresponding_possible_move_from_piece_places(
 func place_and_return_piece_place(
 		official_name_arg: String,
 		position_arg: Vector2) -> PiecePlace:
-	var piece_place_scene: PiecePlace = PiecePlaceScene.instance()
+	var piece_place_scene: PiecePlace = PiecePlaceScene.instantiate()
 	piece_place_scene.initial_setup(
 		official_name_arg,
 		position_arg)
@@ -199,13 +199,13 @@ func place_and_return_piece_path(
 		official_name_arg: String,
 		source_piece_place: PiecePlace,
 		target_piece_place: PiecePlace) -> PiecePath:
-	var piece_path_scene: PiecePath = PiecePathScene.instance()
+	var piece_path_scene: PiecePath = PiecePathScene.instantiate()
 	piece_path_scene.initial_setup(
 		official_name_arg,
 		source_piece_place,
 		target_piece_place)
 	# Need to connect signal piece_path returns to this
-	piece_path_scene.connect('possible_move_performed_on_piece_path', self, '_on_possible_move_performed_on_piece_path')
+	piece_path_scene.connect('possible_move_performed_on_piece_path', Callable(self, '_on_possible_move_performed_on_piece_path'))
 	add_child(piece_path_scene)
 	return piece_path_scene
 
@@ -291,7 +291,7 @@ func activate_and_deactivate_possible_moves_from_official_names_array(
 func place_and_return_piece(
 		official_name_of_piece_place: String,
 		is_piece_owned_by_player_1: bool) -> Piece: # Maybe PieceDrawing, maybe PieceCollision, but Piece nonetheless
-	var piece: PieceAsDrawing = PieceAsDrawingScene.instance()
+	var piece: PieceAsDrawing = PieceAsDrawingScene.instantiate()
 	var position_arg: Vector2 = piece_places_on_board[official_name_of_piece_place].position
 	piece.initial_setup(
 		is_piece_owned_by_player_1,
@@ -404,8 +404,8 @@ func draw_board_visuals() -> void:
 		bottom_left
 	]
 	var pre_polygon_closed: Array = pre_polygon_open + [top_left, top_right] # To round all corners
-	var polygon_open: PoolVector2Array = PoolVector2Array(pre_polygon_open)
-	var polygon_closed: PoolVector2Array = PoolVector2Array(pre_polygon_closed)
+	var polygon_open: PackedVector2Array = PackedVector2Array(pre_polygon_open)
+	var polygon_closed: PackedVector2Array = PackedVector2Array(pre_polygon_closed)
 	var visuals: Polygon2D = $Visuals
 	var boundary_thick_line: Line2D = $Visuals/BoundaryLines
 	visuals.set_polygon(polygon_open)

@@ -30,7 +30,7 @@ var pieces_in_each_position: Dictionary
 var game_state: int # One value of GLOBAL_CONSTANTS.GAME_STATES
 var number_of_past_turns: int
 var repeated_positions_dict: Dictionary # Used in Judge
-var is_game_ongoing setget set_is_game_ongoing, get_is_game_ongoing
+var is_game_ongoing : get = get_is_game_ongoing, set = set_is_game_ongoing
 
 # To be sent to main, in future, for sound processing
 signal audio_requested(request)
@@ -117,23 +117,23 @@ func _enter_tree() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Add Judge, Operators
-	judge = JudgeScene.instance()
+	judge = JudgeScene.instantiate()
 	add_child(judge)
 	if G_OTHERS.FILTER_POSSIBLE_MOVES_THROUGH_OPERATORS:
 		if operator_1_type == G_OTHERS.SHISIMA_OPERATOR_TYPES.HUMAN:
-			operator_1 = HumanOperatorScene.instance()
+			operator_1 = HumanOperatorScene.instantiate()
 		else:
-			operator_1 = EngineOperatorScene.instance()
+			operator_1 = EngineOperatorScene.instantiate()
 		if operator_2_type == G_OTHERS.SHISIMA_OPERATOR_TYPES.HUMAN:
-			operator_2 = HumanOperatorScene.instance()
+			operator_2 = HumanOperatorScene.instantiate()
 		else:
-			operator_2 = EngineOperatorScene.instance()
+			operator_2 = EngineOperatorScene.instantiate()
 		operator_1.judge = judge # Use same instance
 		operator_2.judge = judge
 		add_child(operator_1)
 		add_child(operator_2)
 	# Create board, add it as child
-	board = BoardScene.instance()
+	board = BoardScene.instantiate()
 	board.initial_setup()
 	add_child(board)
 	# Signals might or might not be filtered by operators
@@ -142,7 +142,7 @@ func _ready() -> void:
 		# [They send signal to ShisimaGame only if they are the true recipients]
 		pass # WRITE
 	else:
-		board.connect('possible_move_performed_on_board', self, '_on_possible_move_performed_on_board')
+		board.connect('possible_move_performed_on_board', Callable(self, '_on_possible_move_performed_on_board'))
 	# Set the initial state of the game (in all senses)
 	pieces_in_each_position = G_RULES.INITIAL_PIECES_IN_EACH_POSITION
 	game_state = G_RULES.INITIAL_GAME_STATE

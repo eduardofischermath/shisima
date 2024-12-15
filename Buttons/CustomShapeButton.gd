@@ -11,7 +11,7 @@ class_name CustomShapeButton
 ################################################
 
 var polygon_visual: Polygon2D # Does color, provides the appearance
-var polygon_clickable: CollisionPolygon2D # Shape which detects mouse actions
+var polygon_clickable: CollisionPolygon2D # Shape3D which detects mouse actions
 
 # Other object should connect this to target devices
 # Maybe we could merge these two to a single signal: "button activated" or something
@@ -33,7 +33,7 @@ var color_when_inactive: Color
 
 # Arrow will be centered on CustomShapeButton
 func initial_setup_from_polygon(
-		polygon_vertices: PoolVector2Array,
+		polygon_vertices: PackedVector2Array,
 		color_when_inactive_arg: Color = G_COLORS.COLOR_POSSIBLE_MOVE_ARROW_INACTIVE,
 		color_when_hovered_arg: Color = G_COLORS.COLOR_POSSIBLE_MOVE_ARROW_HOVERED) -> void:
 	# Record colors in attributes
@@ -50,10 +50,10 @@ func initial_setup_from_polygon(
 	update() # To make the visual part
 	# Connect signals
 	# mouse_entered and mouse_exited detect entering/exiting of any child subshapes
-	connect('mouse_entered', self, '_on_CustomShapeButton_mouse_entered')
-	connect('mouse_exited', self, '_on_CustomShapeButton_mouse_exited')
+	connect('mouse_entered', Callable(self, '_on_CustomShapeButton_mouse_entered'))
+	connect('mouse_exited', Callable(self, '_on_CustomShapeButton_mouse_exited'))
 	# To collect all events from the shape (one shape only so we don't need to specify shape_idx)
-	connect('input_event', self, '_on_CustomShapeButton_input_event')
+	connect('input_event', Callable(self, '_on_CustomShapeButton_input_event'))
 
 func add_label_and_keyboard_input(
 		keyboard_key: String) -> void:
@@ -74,7 +74,7 @@ func on_being_hovered_or_not(
 func test_initial_setup() -> void:
 	position = Vector2(300, 300)
 	var pre_test_polygon: Array = [Vector2(-100,-100), Vector2(-100,100), Vector2(100,100), Vector2(100,-100)]
-	var test_polygon: PoolVector2Array = PoolVector2Array(pre_test_polygon)
+	var test_polygon: PackedVector2Array = PackedVector2Array(pre_test_polygon)
 	initial_setup_from_polygon(test_polygon)
 
 ################################################
@@ -100,6 +100,6 @@ func _on_CustomShapeButton_input_event(
 		event: InputEvent,
 		shape_idx: int) -> void:
 	if (event is InputEventMouseButton):
-		if (event.button_index == BUTTON_LEFT):
+		if (event.button_index == MOUSE_BUTTON_LEFT):
 			if (event.pressed):
 				on_being_clicked()

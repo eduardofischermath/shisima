@@ -6,14 +6,14 @@ extends Node
 # DECLARATIONS
 ################################################
 
-const COLOR_BOARD: Color = Color.burlywood #Color.beige
-const COLOR_BOARD_BOUNDARY: Color = Color.chocolate
-const COLOR_PIECE_PLACE: Color = Color.aqua #Color.aquamarine
-const COLOR_PIECE_PATH: Color = Color.aqua
-const COLOR_PIECE_P1: Color = Color.white
-const COLOR_PIECE_P2: Color = Color.black
-const COLOR_POSSIBLE_MOVE_ARROW_INACTIVE: Color = Color.orangered
-const COLOR_POSSIBLE_MOVE_ARROW_HOVERED: Color = Color.orange
+const COLOR_BOARD: Color = Color.BURLYWOOD #Color.BEIGE
+const COLOR_BOARD_BOUNDARY: Color = Color.CHOCOLATE
+const COLOR_PIECE_PLACE: Color = Color.AQUA #Color.AQUAMARINE
+const COLOR_PIECE_PATH: Color = Color.AQUA
+const COLOR_PIECE_P1: Color = Color.WHITE
+const COLOR_PIECE_P2: Color = Color.BLACK
+const COLOR_POSSIBLE_MOVE_ARROW_INACTIVE: Color = Color.ORANGE_RED
+const COLOR_POSSIBLE_MOVE_ARROW_HOVERED: Color = Color.ORANGE
 
 ################################################
 # STATELESS METHODS

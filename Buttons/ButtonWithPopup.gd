@@ -2,7 +2,7 @@ extends Button
 
 class_name ButtonWithPopup
 
-var popup_dialog: PopupDialog
+var popup_dialog: Popup
 var popup_dialog_label: Label
 var popup_dialog_timer: Timer
 var popup_dialog_timer_wait_time: float
@@ -54,9 +54,9 @@ func raise_popup_on_hover():
 
 func _enter_tree():
 	# Create tree essentially
-	popup_dialog = PopupDialog.new()
+	popup_dialog = Popup.new()
 	add_child(popup_dialog)
-	popup_dialog.set_global_position(rect_global_position + rect_size)
+	popup_dialog.set_global_position(global_position + size)
 	#popup_dialog.anchor_left = 0.8
 	#popup_dialog.anchor_right = 1
 	#popup_dialog.anchor_top = 0
@@ -67,7 +67,7 @@ func _enter_tree():
 	popup_dialog_timer_wait_time = G_OTHERS.POPUP_TIMER_TIME
 	popup_dialog_timer.set_wait_time(popup_dialog_timer_wait_time)
 	popup_dialog_timer.set_one_shot(true)
-	popup_dialog_timer.connect('timeout', self, '_on_popup_dialog_timer_timeout')
+	popup_dialog_timer.connect('timeout', Callable(self, '_on_popup_dialog_timer_timeout'))
 	popup_dialog.add_child(popup_dialog_timer)
 	popup_dialog.set_visible(false) # Starts invisible
 	# Thus popup_dialog is the old $PopupDialog and
@@ -76,7 +76,7 @@ func _enter_tree():
 
 func _ready() -> void:
 	# Button cannot be paused
-	pause_mode = Node.PAUSE_MODE_PROCESS
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta) -> void:
 	raise_popup_on_hover()
