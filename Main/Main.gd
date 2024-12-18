@@ -32,8 +32,8 @@ func _ready():
 
 func on_start_button_pressed():
 	$InitialMenu.set_visible(false)
-	var shisima_game: Node = ShisimaGameScene.instantiate()
-	var game_audio: Node = GameAudioScene.instantiate()
+	var shisima_game: Node = ShisimaGameScene.new()
+	var game_audio: Node = GameAudioScene.new()
 	# Maybe do some pre-tree setup?
 	shisima_game.connect('audio_requested', Callable(self, '_on_audio_requested'))
 	add_child(shisima_game)

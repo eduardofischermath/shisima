@@ -56,7 +56,7 @@ func _enter_tree():
 	# Create tree essentially
 	popup_dialog = Popup.new()
 	add_child(popup_dialog)
-	popup_dialog.set_global_position(global_position + size)
+	popup_dialog.position = global_position + size
 	#popup_dialog.anchor_left = 0.8
 	#popup_dialog.anchor_right = 1
 	#popup_dialog.anchor_top = 0

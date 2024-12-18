@@ -47,7 +47,7 @@ func initial_setup_from_polygon(
 	set_pickable(true) # Should be true either way
 	set_collision_layer(1) # Should be 1 either way
 	polygon_visual.set_color(color_when_inactive)
-	update() # To make the visual part
+	queue_redraw() # To make the visual part. Old name in Godot 3.5 was update()
 	# Connect signals
 	# mouse_entered and mouse_exited detect entering/exiting of any child subshapes
 	connect('mouse_entered', Callable(self, '_on_CustomShapeButton_mouse_entered'))

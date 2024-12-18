@@ -107,7 +107,7 @@ func get_thick_circle_shape(
 			pre_inner_points.append(d_d.CIRCLE_CENTER + temp_inner_vector + minimal_nudge)
 			pre_outer_points.append(d_d.CIRCLE_CENTER + temp_outer_vector + minimal_nudge)
 		# Need to reverse inner circle to polygon to work
-		pre_inner_points.invert()
+		pre_inner_points.reverse()
 		var pre_polygon_vertices: Array = pre_inner_points + pre_outer_points
 		polygon_vertices = PackedVector2Array(pre_polygon_vertices)
 	else:
@@ -129,7 +129,7 @@ func draw_thick_circle(
 		color: Color) -> void:
 	var polygon_node: Polygon2D # To be drawn on it (the way we want) it needs to be Polygon2D
 	if draw_to_new_child_node:
-		var new_polygon: Polygon2D = Polygon2D.instantiate()
+		var new_polygon: Polygon2D = Polygon2D.new()
 		relevant_node.add_child(new_polygon)
 		polygon_node = new_polygon
 	else:
