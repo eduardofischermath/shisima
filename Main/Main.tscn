@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Main/Main.gd" id="1"]
 [ext_resource type="Script" path="res://HUDs and menus/InitialMenu.gd" id="2"]
-[ext_resource type="Theme" path="res://Godot Themes/OnlyTheme.tres" id="3"]
+[ext_resource type="Theme" uid="uid://dwd1dvx41hssv" path="res://Godot Themes/OnlyTheme.tres" id="3"]
 [ext_resource type="Script" path="res://Buttons/ButtonWithPopup.gd" id="4"]
 
 [node name="Main" type="Node"]
